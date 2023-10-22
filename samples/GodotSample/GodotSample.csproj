@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.1.2">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\livecharts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\skiasharp\LiveChartsCore.SkiaSharpView.Godot\LiveChartsCore.SkiaSharpView.Godot.csproj" />
+    <ProjectReference Include="..\ViewModelsSamples\ViewModelsSamples.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SkiaSharp.Views.Godot">
+      <HintPath>..\..\..\Ilnazz\SkiaSharp.Views.Godot\bin\Debug\net7.0\SkiaSharp.Views.Godot.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

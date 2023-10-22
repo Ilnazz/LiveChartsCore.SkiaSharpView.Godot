@@ -1,0 +1,63 @@
+﻿<Window x:Class="WPFSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="#f0f0f0"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="1"
+        BorderBrush="#eeeeee">
+
+    <Grid Margin="25 0 0 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0">
+                <Image>
+                    <Image.Source>
+                        <BitmapImage  UriSource="/Images/livecharts.png" />
+                    </Image.Source>
+                </Image>
+            </Border>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0 20">
+
+                <ItemsControl ItemsSource="{Binding Samples}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="0 8" Cursor="Hand" MouseDown="Border_MouseDown">
+                                <TextBlock Text="{Binding}" FontSize="15" FontFamily="Trebuchet MS" FontWeight="Regular"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </ScrollViewer>
+        </Grid>
+
+        <Border Grid.Column="1" Background="White">
+            <!--<Border Background="White" Margin="20 60 20 20" Padding="20" CornerRadius="8" MaxWidth="900" MaxHeight="600">-->
+                <Border.Effect>
+                    <DropShadowEffect 
+                           BlurRadius="10" 
+                           ShadowDepth="0" 
+                           Opacity="0.1"
+                           Color="#303030"/>
+                </Border.Effect>
+                <ContentControl x:Name="content"></ContentControl>
+            <!--</Border>-->
+        </Border>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>11.0</LangVersion>
+    <AssemblyName>LiveChartsCore.SkiaSharpView.Godot</AssemblyName>
+    <RootNamespace>LiveChartsCore.SkiaSharpView.Godot</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Godot.SourceGenerators" Version="4.1.1" />
+    <PackageReference Include="GodotSharp" Version="4.1.1" />
+    <PackageReference Include="SkiaSharp.Views.Desktop.Common" Version="2.88.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LiveChartsCore.SkiaSharp\LiveChartsCore.SkiaSharpView.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SkiaSharp.Views.Godot">
+      <HintPath>..\..\..\..\Ilnazz\SkiaSharp.Views.Godot\bin\Debug\net7.0\SkiaSharp.Views.Godot.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
