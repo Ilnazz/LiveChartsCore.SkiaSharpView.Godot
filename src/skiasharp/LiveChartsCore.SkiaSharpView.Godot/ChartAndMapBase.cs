@@ -28,7 +28,7 @@ namespace LiveChartsCore.SkiaSharpView.Godot;
 public abstract partial class ChartAndMapBase : Panel
 {
     #region Properties
-    public Color BackgroundColor
+    public Color Background
     {
         get => StyleBox.BgColor;
         set => StyleBox.BgColor = value;
@@ -59,7 +59,7 @@ public abstract partial class ChartAndMapBase : Panel
     {
         LiveCharts.Configure(config => config.UseDefaults());
 
-        BackgroundColor = default;
+        Background = default;
 
         LayoutMode = 1;
         AnchorsPreset = (int)LayoutPreset.FullRect;

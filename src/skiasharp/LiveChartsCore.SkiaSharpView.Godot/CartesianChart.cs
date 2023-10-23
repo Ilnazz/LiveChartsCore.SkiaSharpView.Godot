@@ -145,10 +145,10 @@ public partial class CartesianChart : Chart, ICartesianChartView<SkiaSharpDrawin
     private readonly CollectionDeepObserver<ICartesianAxis> _yAxesObserver;
     private readonly CollectionDeepObserver<Section<SkiaSharpDrawingContext>> _sectionsObserver;
 
-    private IEnumerable<ISeries> _series;
-    private IEnumerable<ICartesianAxis> _xAxes;
-    private IEnumerable<ICartesianAxis> _yAxes;
-    private IEnumerable<Section<SkiaSharpDrawingContext>> _sections;
+    private IEnumerable<ISeries> _series = null!;
+    private IEnumerable<ICartesianAxis> _xAxes = null!;
+    private IEnumerable<ICartesianAxis> _yAxes = null!;
+    private IEnumerable<Section<SkiaSharpDrawingContext>> _sections = null!;
 
     private TooltipFindingStrategy _tooltipFindingStrategy;
     #endregion
@@ -184,14 +184,14 @@ public partial class CartesianChart : Chart, ICartesianChartView<SkiaSharpDrawin
             true
         );
 
-        _series = new ObservableCollection<ISeries>();
-        _sections = new ObservableCollection<Section<SkiaSharpDrawingContext>>();
+        Series = new ObservableCollection<ISeries>();
+        Sections = new ObservableCollection<Section<SkiaSharpDrawingContext>>();
 
-        _xAxes = new ObservableCollection<ICartesianAxis>()
+        XAxes = new ObservableCollection<ICartesianAxis>()
         {
             LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultCartesianAxis()
         };
-        _yAxes = new ObservableCollection<ICartesianAxis>()
+        YAxes = new ObservableCollection<ICartesianAxis>()
         {
             LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultCartesianAxis()
         };

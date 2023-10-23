@@ -12,26 +12,26 @@ public partial class View : VBoxViewBase
         var viewModel = new ViewModel();
 
         var buttons = new HBoxContainer();
+        AddChild(buttons);
 
+        buttons.AddChild(new Label { Text = "Curve: ", SelfModulate = Colors.Black });
         var curveOptionButton = new OptionButton();
         curveOptionButton.ItemSelected += index => viewModel.SelectedCurve = viewModel.AvalaibaleCurves[index];
+        buttons.AddChild(curveOptionButton);
 
         foreach (var curve in viewModel.AvalaibaleCurves.Select(p => p.Item1))
             curveOptionButton.AddItem(curve);
         curveOptionButton.Selected = viewModel.AvalaibaleCurves.ToList().IndexOf(viewModel.SelectedCurve);
 
+        buttons.AddChild(new Label { Text = "Speed: ", SelfModulate = Colors.Black });
         var speedOptionButton = new OptionButton();
         speedOptionButton.ItemSelected += index => viewModel.SelectedSpeed = viewModel.AvailableSpeeds[index];
-        buttons.AddChild(new Label { Text = "Curve: ", SelfModulate = Colors.Black });
-        buttons.AddChild(curveOptionButton);
+        buttons.AddChild(speedOptionButton);
 
         foreach (var speed in viewModel.AvailableSpeeds.Select(p => p.Item1))
             speedOptionButton.AddItem(speed);
         speedOptionButton.Selected = viewModel.AvailableSpeeds.ToList().IndexOf(viewModel.SelectedSpeed);
-        buttons.AddChild(new Label { Text = "Speed: ", SelfModulate = Colors.Black });
-        buttons.AddChild(speedOptionButton);
 
-        AddChild(buttons);
         AddChild(new CartesianChart
         {
             Series = viewModel.Series

@@ -43,7 +43,7 @@ public partial class View : VBoxViewBase
 
         AddChild(new CartesianChart
         {
-            Series = _viewModel.Series,
+            Series = _viewModel.Series
         });
     }
 

@@ -12,7 +12,7 @@ public partial class View : ViewBase
         AddChild(new CartesianChart
         {
             Series = viewModel.SeriesCollection,
-            ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.X // mark
+            ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.X
         });
     }
 }

@@ -26,7 +26,6 @@ using Godot;
 
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
-// TODO: Concurrency safe
 public partial class DeferringHelper : Node
 {
     private static DeferringHelper s_instance;

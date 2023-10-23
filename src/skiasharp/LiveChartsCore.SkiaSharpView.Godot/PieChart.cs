@@ -125,8 +125,8 @@ public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
     PieChart<SkiaSharpDrawingContext> IPieChartView<SkiaSharpDrawingContext>.Core => (PieChart<SkiaSharpDrawingContext>)coreChart;
 
     #region Fields
-    private IEnumerable<ISeries> _series = null!;
     private readonly CollectionDeepObserver<ISeries> _seriesObserver = null!;
+    private IEnumerable<ISeries> _series = null!;
 
     private bool _isClockwise;
     private double _initialRotation;
@@ -141,7 +141,6 @@ public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
     /// </summary>
     public PieChart() : base()
     {
-        _series = new ObservableCollection<ISeries>();
         _seriesObserver = new CollectionDeepObserver<ISeries>
         (
             OnDeepCollectionChanged,
@@ -151,6 +150,8 @@ public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
 
         _isClockwise = true;
         _maxAngle = 360;
+
+        Series = new ObservableCollection<ISeries>();
 
         VisualElements = new ObservableCollection<ChartElement<SkiaSharpDrawingContext>>();
     }

@@ -8,42 +8,59 @@ using SkiaSharp.Views.Godot;
 
 namespace GodotSample.Pies.Processing;
 
-public partial class View : VBoxViewBase
+public partial class View : ViewBase
 {
     public View()
     {
         var viewModel = new ViewModel();
 
-        var labels = new HBoxContainer();
+        var hBoxContainer = new HBoxContainer
+        {
+            LayoutMode = 1,
+            AnchorsPreset = (int)LayoutPreset.FullRect
+        };
+        AddChild(hBoxContainer);
 
-        var b1 = new Label();
-        var b2 = new Label();
-        var b3 = new Label();
+        var labels = new VBoxContainer
+        {
+            SizeFlagsHorizontal = SizeFlags.ShrinkCenter,
+            SizeFlagsVertical = SizeFlags.ShrinkCenter
+        };
+
+        var label1 = new Label();
+        labels.AddChild(label1);
+
+        var label2 = new Label();
+        labels.AddChild(label2);
+
+        var label3 = new Label();
+        labels.AddChild(label3);
 
         var pieChart = new PieChart
         {
-            Series = viewModel.Series
+            Series = viewModel.Series,
+            SizeFlagsStretchRatio = 3
         };
         pieChart.UpdateStarted += _ =>
         {
             var series = (PieSeries<ObservableValue>)viewModel.Series[0];
             var values = (ObservableValue[])series.Values;
-            b1.Text = values[0].Value + " " + series.Name;
-            b1.SelfModulate = GetForeColor(series);
+            label1.Text = values[0].Value + " " + series.Name;
+            label1.SelfModulate = GetForeColor(series);
 
             series = (PieSeries<ObservableValue>)viewModel.Series[1];
             values = (ObservableValue[])series.Values;
-            b2.Text = values[0].Value + " " + series.Name;
-            b2.SelfModulate = GetForeColor(series);
+            label2.Text = values[0].Value + " " + series.Name;
+            label2.SelfModulate = GetForeColor(series);
 
             series = (PieSeries<ObservableValue>)viewModel.Series[2];
             values = (ObservableValue[])series.Values;
-            b3.Text = values[0].Value + " " + series.Name;
-            b3.SelfModulate = GetForeColor(series);
+            label3.Text = values[0].Value + " " + series.Name;
+            label3.SelfModulate = GetForeColor(series);
         };
 
-        AddChild(labels);
-        AddChild(pieChart);
+        hBoxContainer.AddChild(pieChart);
+        hBoxContainer.AddChild(labels);
     }
 
     private static Color GetForeColor(PieSeries<ObservableValue> pieSeries)

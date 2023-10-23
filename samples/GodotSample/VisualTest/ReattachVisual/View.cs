@@ -6,7 +6,6 @@ namespace GodotSample.VisualTest.ReattachVisual;
 
 public partial class View : VBoxViewBase
 {
-    private bool _isInVisualTree = true;
     private CartesianChart _chart;
 
     public View()
@@ -14,7 +13,7 @@ public partial class View : VBoxViewBase
         var viewModel = new ViewModel();
 
         var toggleAttachButton = new Button { Text = "Toggle attach" };
-        toggleAttachButton.Pressed += ToggleAttachButtonPressed;
+        toggleAttachButton.Pressed += ToggleChartAttachment;
         AddChild(toggleAttachButton);
 
         _chart = new CartesianChart
@@ -23,19 +22,14 @@ public partial class View : VBoxViewBase
             Sections = viewModel.Sections,
             ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.X
         };
-        AddChild(_chart);
+        ToggleChartAttachment();
     }
 
-    private void ToggleAttachButtonPressed()
+    private void ToggleChartAttachment()
     {
-        if (_isInVisualTree)
-        {
+        if (_chart.GetParent() is null)
+            AddChild(_chart);
+        else
             RemoveChild(_chart);
-            _isInVisualTree = false;
-            return;
-        }
-
-        AddChild(_chart);
-        _isInVisualTree = true;
     }
 }

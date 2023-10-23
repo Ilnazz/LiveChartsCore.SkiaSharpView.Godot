@@ -16,7 +16,7 @@ public partial class View : ViewBase
         var pieChart = new PieChart
         {
             Series = viewModel.Series,
-            DataPointerDownCommand = viewModel.DataPointerDownCommand,
+            DataPointerDownCommand = viewModel.DataPointerDownCommand
         };
         pieChart.DataPointerDown += Chart_DataPointerDown;
 

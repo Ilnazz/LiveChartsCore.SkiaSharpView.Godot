@@ -15,21 +15,17 @@ public partial class View : VBoxViewBase
         var cartesianChart = new CartesianChart
         {
             Series = viewModel.Series,
-            //TODO: check it will work: TooltipPosition = viewModel.Position,
             LegendPosition = LegendPosition.Left
         };
 
-        var optionButton = new OptionButton();
-        optionButton.ItemSelected += index =>
-            cartesianChart.TooltipPosition = (TooltipPosition)index;
+        var tooltipPositionOptionButton = new OptionButton();
+        tooltipPositionOptionButton.ItemSelected += index => cartesianChart.TooltipPosition = (TooltipPosition)index;
+        AddChild(tooltipPositionOptionButton);
 
-        var options = Enum.GetNames(typeof(TooltipPosition));
-        foreach (var option in options)
-            optionButton.AddItem(option);
+        foreach (var tooltipPosition in Enum.GetNames(typeof(TooltipPosition)))
+            tooltipPositionOptionButton.AddItem(tooltipPosition);
+        tooltipPositionOptionButton.Selected = 0;
 
-        optionButton.Selected = 0;
-
-        AddChild(optionButton);
         AddChild(cartesianChart);
     }
 }

@@ -6,36 +6,35 @@ namespace GodotSample.General.ChartToImage;
 
 public partial class View : VBoxViewBase
 {
-    private readonly CartesianChart _cartesian;
-    private readonly PieChart _pie;
-    private readonly GeoMap _map;
+    private CartesianChart _cartesian;
+    private PieChart _pie;
+    private GeoMap _map;
 
-    public View()
+    public override void _Ready()
     {
         var viewModel = new ViewModel();
 
         _cartesian = new CartesianChart
         {
-            Series = viewModel.CatesianSeries,
+            Series = viewModel.CatesianSeries
         };
         AddChild(_cartesian);
 
         _pie = new PieChart
         {
-            Series = viewModel.PieSeries,
+            Series = viewModel.PieSeries
         };
         AddChild(_pie);
 
         _map = new GeoMap
         {
-            Series = viewModel.GeoSeries,
+            Series = viewModel.GeoSeries
         };
         AddChild(_map);
 
-        // now lets create the images // mark
-        CreateImageFromCartesianControl(); // mark
-        CreateImageFromPieControl(); // mark
-        CreateImageFromGeoControl(); // mark
+        CreateImageFromCartesianControl();
+        CreateImageFromPieControl();
+        CreateImageFromGeoControl();
     }
 
     private void CreateImageFromCartesianControl()

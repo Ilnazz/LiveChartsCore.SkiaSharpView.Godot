@@ -12,8 +12,8 @@ public partial class View : VBoxViewBase
 
         var toggleFirstButton = new Button { Text = "Toggle first" };
         toggleFirstButton.Pressed += viewModel.ToggleFirst;
-
         AddChild(toggleFirstButton);
+
         AddChild(new CartesianChart
         {
             Series = viewModel.Series,

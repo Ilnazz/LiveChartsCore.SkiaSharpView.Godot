@@ -17,21 +17,21 @@ public partial class View : VBoxViewBase
         var buttonsBox = new HBoxContainer();
         AddChild(buttonsBox);
 
-        var addButton = new Button { Text = "Add" };
-        addButton.Pressed += _viewModel.AddItem;
-        buttonsBox.AddChild(addButton);
+        var addItemButton = new Button { Text = "Add item" };
+        addItemButton.Pressed += _viewModel.AddItem;
+        buttonsBox.AddChild(addItemButton);
 
-        var removeButton = new Button { Text = "Remove" };
-        removeButton.Pressed += _viewModel.RemoveItem;
-        buttonsBox.AddChild(removeButton);
+        var removeItemButton = new Button { Text = "Remove item" };
+        removeItemButton.Pressed += _viewModel.RemoveItem;
+        buttonsBox.AddChild(removeItemButton);
 
-        var updateButton = new Button { Text = "Update" };
-        updateButton.Pressed += _viewModel.UpdateItem;
-        buttonsBox.AddChild(updateButton);
+        var updateItemButton = new Button { Text = "Update item" };
+        updateItemButton.Pressed += _viewModel.UpdateItem;
+        buttonsBox.AddChild(updateItemButton);
 
-        var replaceButton = new Button { Text = "Replace" };
-        replaceButton.Pressed += _viewModel.ReplaceItem;
-        buttonsBox.AddChild(replaceButton);
+        var replaceItemButton = new Button { Text = "Replace item" };
+        replaceItemButton.Pressed += _viewModel.ReplaceItem;
+        buttonsBox.AddChild(replaceItemButton);
 
         var addSeriesButton = new Button { Text = "Add series" };
         addSeriesButton.Pressed += _viewModel.AddSeries;

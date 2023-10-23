@@ -12,16 +12,15 @@ public partial class View : VBoxViewBase
 		var viewModel = new ViewModel();
 
 		var buttonsBox = new HBoxContainer();
+        AddChild(buttonsBox);
 
-		var togglePositionButton = new Button { Text = "toggle position" };
+		var togglePositionButton = new Button { Text = "Toggle position" };
 		togglePositionButton.Pressed += viewModel.TogglePosition;
 		buttonsBox.AddChild(togglePositionButton);
 
-		var setNewColorButton = new Button { Text = "new color" };
-		setNewColorButton.Pressed += () => viewModel.SetNewColor();
+		var setNewColorButton = new Button { Text = "Set new color" };
+		setNewColorButton.Pressed += viewModel.SetNewColor;
 		buttonsBox.AddChild(setNewColorButton);
-
-        AddChild(buttonsBox);
 
 		AddChild(new CartesianChart
         {

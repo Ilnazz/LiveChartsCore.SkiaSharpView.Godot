@@ -138,9 +138,9 @@ public partial class PolarChart : Chart, IPolarChartView<SkiaSharpDrawingContext
     private readonly CollectionDeepObserver<IPolarAxis> _angleObserver;
     private readonly CollectionDeepObserver<IPolarAxis> _radiusObserver;
 
-    private IEnumerable<ISeries> _series;
-    private IEnumerable<IPolarAxis> _angleAxes;
-    private IEnumerable<IPolarAxis> _radiusAxes;
+    private IEnumerable<ISeries> _series = null!;
+    private IEnumerable<IPolarAxis> _angleAxes = null!;
+    private IEnumerable<IPolarAxis> _radiusAxes = null!;
 
     private bool _fitToBounds;
     private double _totalAngle;
@@ -158,18 +158,19 @@ public partial class PolarChart : Chart, IPolarChartView<SkiaSharpDrawingContext
         _angleObserver = new CollectionDeepObserver<IPolarAxis>(OnDeepCollectionChanged, OnDeepCollectionPropertyChanged, true);
         _radiusObserver = new CollectionDeepObserver<IPolarAxis>(OnDeepCollectionChanged, OnDeepCollectionPropertyChanged, true);
 
-        _series = new ObservableCollection<ISeries>();
-        _angleAxes = new ObservableCollection<IPolarAxis>()
-        {
-            LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultPolarAxis()
-        };
-        _radiusAxes = new ObservableCollection<IPolarAxis>()
-        {
-            LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultPolarAxis()
-        };
-
         _totalAngle = 360;
         _initialRotation = LiveCharts.DefaultSettings.PolarInitialRotation;
+
+        Series = new ObservableCollection<ISeries>();
+
+        AngleAxes = new ObservableCollection<IPolarAxis>()
+        {
+            LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultPolarAxis()
+        };
+        RadiusAxes = new ObservableCollection<IPolarAxis>()
+        {
+            LiveCharts.DefaultSettings.GetProvider<SkiaSharpDrawingContext>().GetDefaultPolarAxis()
+        };
 
         VisualElements = new ObservableCollection<ChartElement<SkiaSharpDrawingContext>>();
     }

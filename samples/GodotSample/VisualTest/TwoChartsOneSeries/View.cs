@@ -14,7 +14,6 @@ public partial class View : VBoxViewBase
             Series = viewModel.Series,
             ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.X
         });
-
         AddChild(new CartesianChart
         {
             Series = viewModel.Series,

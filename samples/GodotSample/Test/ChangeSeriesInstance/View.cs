@@ -10,25 +10,41 @@ public partial class View : VBoxViewBase
     {
         var viewModel = new ViewModel();
 
-        var changeContentButton = new Button() { Text = "Change content" };
-        changeContentButton.Pressed += viewModel.GenerateData;
-        AddChild(changeContentButton);
+        var changeDataButton = new Button() { Text = "Change data" };
+        AddChild(changeDataButton);
 
-        AddChild(new CartesianChart
+        var cartesianChart = new CartesianChart
         {
             Series = viewModel.CartesianSeries
-        });
-        AddChild(new PieChart
+        };
+        AddChild(cartesianChart);
+
+        var pieChart = new PieChart
         {
             Series = viewModel.PieSeries
-        });
-        AddChild(new PolarChart
+        };
+        AddChild(pieChart);
+
+        var polarChart = new PolarChart
         {
             Series = viewModel.PolarSeries
-        });
-        AddChild(new GeoMap
+        };
+        AddChild(polarChart);
+
+        var geoMap = new GeoMap
         {
-            Series = viewModel.GeoSeries
-        });
+            Series = viewModel.GeoSeries,
+            MapProjection = LiveChartsCore.Geo.MapProjection.Mercator
+        };
+        AddChild(geoMap);
+
+        changeDataButton.Pressed += () =>
+        {
+            viewModel.GenerateData();
+            cartesianChart.Series = viewModel.CartesianSeries;
+            pieChart.Series = viewModel.PieSeries;
+            polarChart.Series = viewModel.PolarSeries;
+            geoMap.Series = viewModel.GeoSeries;
+        };
     }
 }

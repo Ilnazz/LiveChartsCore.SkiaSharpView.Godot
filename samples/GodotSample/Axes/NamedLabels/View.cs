@@ -14,9 +14,9 @@ public partial class View : ViewBase
             Series = viewModel.Series,
             XAxes = viewModel.XAxes,
             YAxes = viewModel.YAxes,
-            TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Left, // mark
-            TooltipTextPaint = viewModel.TooltipTextPaint, // mark
-            TooltipBackgroundPaint = viewModel.TooltipBackgroundPaint, // mark
+            TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Left,
+            TooltipTextPaint = viewModel.TooltipTextPaint,
+            TooltipBackgroundPaint = viewModel.TooltipBackgroundPaint,
             TooltipTextSize = 16
         });
     }

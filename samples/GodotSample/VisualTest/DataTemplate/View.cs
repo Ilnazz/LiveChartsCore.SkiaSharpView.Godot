@@ -8,7 +8,8 @@ public partial class View : ViewBase
     {
         AddChild(new Label
         {
-            Text = "Data templates are not supported in Godot."
+            Text = "Data templates are not supported in Godot.",
+            SelfModulate = Colors.Black
         });
     }
 }

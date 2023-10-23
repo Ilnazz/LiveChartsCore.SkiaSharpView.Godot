@@ -19,7 +19,7 @@ public partial class UserControl1 : UserControl
     private async void UserControl1_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         var canvas = (MotionCanvas)FindName("canvas");
-        await Task.Delay(TimeSpan.FromMilliseconds(10)); // workaround to wait for the canvas to be ready...
+        //await Task.Delay(TimeSpan.FromMilliseconds(10)); // workaround to wait for the canvas to be ready...
         ViewModelsSamples.Test.MotionCanvasDispose.ViewModel.Generate(canvas.CanvasCore);
     }
 }

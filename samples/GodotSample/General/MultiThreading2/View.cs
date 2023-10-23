@@ -11,7 +11,7 @@ public partial class View : ViewBase
 
         AddChild(new CartesianChart
         {
-            Series = viewModel.Series,
+            Series = viewModel.Series
         });
     }
 }

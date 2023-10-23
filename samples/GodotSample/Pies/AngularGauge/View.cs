@@ -10,7 +10,11 @@ public partial class View : VBoxViewBase
     {
         var viewModel = new ViewModel();
 
-        var changeValueButton = new Button { Text = "Change value", SizeFlagsHorizontal = SizeFlags.ShrinkCenter };
+        var changeValueButton = new Button
+        {
+            Text = "Change value",
+            SizeFlagsHorizontal = SizeFlags.ShrinkCenter
+        };
         changeValueButton.Pressed += viewModel.DoRandomChange;
         AddChild(changeValueButton);
 

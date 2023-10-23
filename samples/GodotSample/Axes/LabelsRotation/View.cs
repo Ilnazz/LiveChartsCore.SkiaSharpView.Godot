@@ -11,20 +11,22 @@ public partial class View : VBoxViewBase
         var viewModel = new ViewModel();
 
         var sliderContainer = new VBoxContainer();
+        AddChild(sliderContainer);
 
-        var sliderLabel = new Label();
-        sliderLabel.AddThemeColorOverride("font_color", Colors.Black);
-        var slider = new HSlider() { MinValue = -360, MaxValue = 720 };
-        slider.ValueChanged += value =>
+        var rotationSliderLabel = new Label
+        {
+            SelfModulate = Colors.Black,
+            Text = $"Rotation: {viewModel.SliderValue} deg."
+        };
+        sliderContainer.AddChild(rotationSliderLabel);
+
+        var rotationSlider = new HSlider() { MinValue = -360, MaxValue = 720 };
+        rotationSlider.ValueChanged += value =>
         {
             viewModel.SliderValue = value;
-            sliderLabel.Text = $"Rotation: {value} deg.";
+            rotationSliderLabel.Text = $"Rotation: {value} deg.";
         };
-        sliderLabel.Text = $"Rotation: {viewModel.SliderValue} deg.";
-        sliderContainer.AddChild(sliderLabel);
-        sliderContainer.AddChild(slider);
-
-        AddChild(sliderContainer);
+        sliderContainer.AddChild(rotationSlider);
 
         AddChild(new CartesianChart
         {

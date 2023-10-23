@@ -152,9 +152,9 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     #region Fields
     private readonly GeoMap<SkiaSharpDrawingContext> _coreMap;
 
-    private IEnumerable<IGeoSeries> _series;
+    private IEnumerable<IGeoSeries> _series = null!;
     private readonly CollectionDeepObserver<IGeoSeries> _seriesObserver;
-    
+
     private CoreMap<SkiaSharpDrawingContext> _activeMap;
     private MapProjection _mapProjection;
 
@@ -171,7 +171,6 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     {
         _coreMap = new GeoMap<SkiaSharpDrawingContext>(this);
 
-        _series = Enumerable.Empty<IGeoSeries>();
         _seriesObserver = new CollectionDeepObserver<IGeoSeries>
         (
             OnDeepCollectionChanged,
@@ -183,6 +182,8 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
 
         _stroke = new SolidColorPaint(new SKColor(255, 255, 255, 255)) { IsStroke = true };
         _fill = new SolidColorPaint(new SKColor(240, 240, 240, 255)) { IsFill = true };
+
+        Series = Enumerable.Empty<IGeoSeries>();
     }
 
     #region Event handlers

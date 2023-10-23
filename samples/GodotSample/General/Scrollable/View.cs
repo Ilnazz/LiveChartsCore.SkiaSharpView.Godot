@@ -16,10 +16,8 @@ public partial class View : VBoxViewBase
             ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.X,
             DrawMargin = viewModel.Margin,
             UpdateStartedCommand = viewModel.ChartUpdatedCommand,
-
             SizeFlagsStretchRatio = 4
         });
-
         AddChild(new CartesianChart
         {
             Series = viewModel.ScrollbarSeries,

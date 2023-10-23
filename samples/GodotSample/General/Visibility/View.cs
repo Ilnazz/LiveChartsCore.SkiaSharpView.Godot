@@ -11,20 +11,20 @@ public partial class View : VBoxViewBase
         var viewModel = new ViewModel();
 
         var buttons = new HBoxContainer();
-
-        var toggle1Button = new Button { Text = "toggle 1" };
-        toggle1Button.Pressed += viewModel.ToggleSeries0;
-        buttons.AddChild(toggle1Button);
-
-        var toggle2Button = new Button { Text = "toggle 2" };
-        toggle2Button.Pressed += viewModel.ToggleSeries1;
-        buttons.AddChild(toggle2Button);
-
-        var toggle3Button = new Button { Text = "toggle 3" };
-        toggle3Button.Pressed += viewModel.ToggleSeries2;
-        buttons.AddChild(toggle3Button);
-
         AddChild(buttons);
+
+        var toggleSeries1Button = new Button { Text = "Toggle series 1" };
+        toggleSeries1Button.Pressed += viewModel.ToggleSeries0;
+        buttons.AddChild(toggleSeries1Button);
+
+        var toggleSeries2Button = new Button { Text = "Toggle series 2" };
+        toggleSeries2Button.Pressed += viewModel.ToggleSeries1;
+        buttons.AddChild(toggleSeries2Button);
+
+        var toggleSeries3Button = new Button { Text = "Toggle series 3" };
+        toggleSeries3Button.Pressed += viewModel.ToggleSeries2;
+        buttons.AddChild(toggleSeries3Button);
+
         AddChild(new CartesianChart
         {
             Series = viewModel.Series

@@ -16,7 +16,7 @@ public partial class View : ViewBase
         var polarChart = new PolarChart
         {
             Series = viewModel.Series,
-            DataPointerDownCommand = viewModel.DataPointerDownCommand,
+            DataPointerDownCommand = viewModel.DataPointerDownCommand
         };
         polarChart.DataPointerDown += Chart_DataPointerDown;
 

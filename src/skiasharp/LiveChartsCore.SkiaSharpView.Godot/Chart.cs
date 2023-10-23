@@ -249,8 +249,8 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
 
     LvcColor IChartView.BackColor
     {
-        get => new((byte)BackgroundColor.R8, (byte)BackgroundColor.G8, (byte)BackgroundColor.B8, (byte)BackgroundColor.A8);
-        set => BackgroundColor = new(value.R, value.G, value.B, value.A);
+        get => new((byte)Background.R8, (byte)Background.G8, (byte)Background.B8, (byte)Background.A8);
+        set => Background = new(value.R, value.G, value.B, value.A);
     }
     #endregion
 
@@ -320,7 +320,7 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
     /// <summary>
     /// The core chart
     /// </summary>
-    protected Chart<SkiaSharpDrawingContext> coreChart;
+    protected Chart<SkiaSharpDrawingContext> coreChart = null!;
 
     /// <summary>
     /// The legend
@@ -358,13 +358,9 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
     /// <summary>
     /// Initializes a new instance of the <see cref="Chart"/> class.
     /// </summary>
-    /// <exception cref="Exception">Core chart is not initialized</exception>
     protected Chart() : base()
     {
         InitializeCoreChart();
-        if (coreChart is null)
-            throw new Exception($"Core chart should be initialized in {nameof(InitializeCoreChart)} method.");
-        coreChart.Update();
 
         coreChart.Measuring += OnCoreMeasuring;
         coreChart.UpdateStarted += OnCoreUpdateStarted;

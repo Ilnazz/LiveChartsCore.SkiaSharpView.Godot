@@ -1,3 +1,5 @@
+res://MainScene.tscn
+res://MainScene.cs
 res://Axes/ColorsAndPosition/View.cs
 res://Axes/Crosshairs/View.cs
 res://Axes/CustomSeparatorsInterval/View.cs
@@ -59,7 +61,6 @@ res://Lines/Properties/View.cs
 res://Lines/Straight/View.cs
 res://Lines/XY/View.cs
 res://Lines/Zoom/View.cs
-res://MainScene.cs
 res://Maps/World/View.cs
 res://Pies/AngularGauge/View.cs
 res://Pies/AutoUpdate/View.cs
@@ -103,4 +104,3 @@ res://VisualTest/DataTemplate/View.cs
 res://VisualTest/ReattachVisual/View.cs
 res://VisualTest/Tabs/View.cs
 res://VisualTest/TwoChartsOneSeries/View.cs
-res://MainScene.tscn

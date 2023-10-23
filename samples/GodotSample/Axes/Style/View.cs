@@ -17,7 +17,7 @@ public partial class View : ViewBase
             DrawMarginFrame = viewModel.Frame,
             ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.Both,
             TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Hidden,
-            BackgroundColor = new(60, 60, 60)
+            Background = new(60, 60, 60)
         });
     }
 }
