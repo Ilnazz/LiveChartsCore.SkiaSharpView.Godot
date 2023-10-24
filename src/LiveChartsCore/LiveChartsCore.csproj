@@ -4,30 +4,6 @@
     <Nullable>enable</Nullable>
     <LangVersion>11.0</LangVersion>
     <TargetFrameworks>net7.0</TargetFrameworks>
-    <AssemblyName>LiveChartsCore</AssemblyName>
-    <RootNamespace>LiveChartsCore</RootNamespace>
-    <Version>2.0.0-rc1.2</Version>
-    <Description>Simple, flexible, interactive and powerful data visualization for .Net, this is the core package probably you need another package also unless you are building your own backed.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Authors>BetoRodriguez</Authors>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <RepositoryUrl>https://github.com/beto-rodriguez/LiveCharts2</RepositoryUrl>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Geo\world-robinson.geojson" />
-    <None Remove="Geo\world.geojson" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Geo\world.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
 
 </Project>

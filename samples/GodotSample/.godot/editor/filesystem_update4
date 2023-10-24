@@ -1,4 +1,3 @@
-res://MainScene.tscn
 res://Axes/ColorsAndPosition/View.cs
 res://Axes/Crosshairs/View.cs
 res://Axes/CustomSeparatorsInterval/View.cs
