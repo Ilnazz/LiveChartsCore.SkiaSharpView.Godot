@@ -1,4 +1,5 @@
-﻿using LiveChartsCore.SkiaSharpView.Godot;
+﻿using Godot;
+using LiveChartsCore.SkiaSharpView.Godot;
 using ViewModelsSamples.Axes.Style;
 
 namespace GodotSample.Axes.Style;
@@ -17,7 +18,7 @@ public partial class View : ViewBase
             DrawMarginFrame = viewModel.Frame,
             ZoomMode = LiveChartsCore.Measure.ZoomAndPanMode.Both,
             TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Hidden,
-            Background = new(60, 60, 60)
+            Background = Color.Color8(51, 51, 51)
         });
     }
 }

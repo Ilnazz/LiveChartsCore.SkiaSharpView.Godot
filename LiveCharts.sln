@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveChartsCore.SkiaSharpView.Godot", "src\skiasharp\LiveChartsCore.SkiaSharpView.Godot\LiveChartsCore.SkiaSharpView.Godot.csproj", "{85BE800A-7FDC-4442-9013-8993C2039516}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Godot", "Godot", "{3D785AC2-BC88-4E4B-B92B-D6022121FBE5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GodotSample", "samples\GodotSample\GodotSample.csproj", "{D536E696-1452-4310-9326-F45A5815E9F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveChartsCore.SkiaSharpView.WPF", "src\skiasharp\LiveChartsCore.SkiaSharp.WPF\LiveChartsCore.SkiaSharpView.WPF.csproj", "{3A408065-5E87-4AE0-8A6E-DCBC4817BBB4}"
@@ -663,8 +661,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BDE9C3D2-5801-4BE1-B79E-63686D04CE0F} = {2E9ED2C0-0C15-4890-8070-4A3B8A5C7704}
-		{3D785AC2-BC88-4E4B-B92B-D6022121FBE5} = {2E9ED2C0-0C15-4890-8070-4A3B8A5C7704}
-		{D536E696-1452-4310-9326-F45A5815E9F1} = {3D785AC2-BC88-4E4B-B92B-D6022121FBE5}
+		{D536E696-1452-4310-9326-F45A5815E9F1} = {2E9ED2C0-0C15-4890-8070-4A3B8A5C7704}
 		{F8A901D8-6419-4352-9F92-B4E0FE2C70DC} = {2E9ED2C0-0C15-4890-8070-4A3B8A5C7704}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

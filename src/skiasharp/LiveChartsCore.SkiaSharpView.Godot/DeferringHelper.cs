@@ -26,16 +26,18 @@ using Godot;
 
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
+/// <summary>
+/// Allows you to defer the execution of actions
+/// </summary>
 public partial class DeferringHelper : Node
 {
     private static DeferringHelper s_instance;
     public static DeferringHelper Instance { get; } = s_instance ??= new();
 
     private readonly IList<Action> _deferredActions = new List<Action>();
+    private readonly object _lockObject = new();
 
     private bool _isCallDeferred;
-
-    private readonly object _lockObject = new();
 
     public void DeferActionInvocation(Action action)
     {

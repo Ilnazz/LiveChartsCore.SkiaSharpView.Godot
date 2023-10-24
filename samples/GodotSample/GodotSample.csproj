@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SkiaSharp.Views.Godot">
-      <HintPath>..\..\..\Ilnazz\SkiaSharp.Views.Godot\bin\Debug\net7.0\SkiaSharp.Views.Godot.dll</HintPath>
+      <HintPath>..\..\..\SkiaSharp.Views.Godot\bin\Release\net7.0\SkiaSharp.Views.Godot.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

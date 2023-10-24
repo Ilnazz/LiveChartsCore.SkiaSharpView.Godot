@@ -241,6 +241,11 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     {
         _coreMap.Unload();
     }
+
+    public override void _Resized()
+    {
+        _coreMap.Update();
+    }
     #endregion
 
     void IGeoMapView<SkiaSharpDrawingContext>.InvokeOnUIThread(Action action)

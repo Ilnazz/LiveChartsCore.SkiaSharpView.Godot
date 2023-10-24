@@ -407,17 +407,17 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
         coreChart.Update();
     }
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         coreChart.Load();
     }
 
-    public override void _TreeExited()
+    public override void _TreeExiting()
     {
         coreChart.Unload();
     }
 
-    public override void _ItemRectChanged()
+    public override void _Resized()
     {
         coreChart.Update();
     }

@@ -15,7 +15,8 @@ public partial class View : VBoxViewBase
         var cartesianChart = new CartesianChart
         {
             Series = viewModel.Series,
-            LegendPosition = LegendPosition.Left
+            LegendPosition = LegendPosition.Left,
+            TooltipPosition = TooltipPosition.Hidden
         };
 
         var tooltipPositionOptionButton = new OptionButton();
