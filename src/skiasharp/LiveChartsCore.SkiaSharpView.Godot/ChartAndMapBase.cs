@@ -85,8 +85,6 @@ public abstract partial class ChartAndMapBase : Panel
         TreeExited += _TreeExited;
 
         Resized += _Resized;
-        ItemRectChanged += _ItemRectChanged;
-        VisibilityChanged += _VisibilityChanged;
 
         MouseEntered += _MouseEntered;
         MouseExited += _MouseExited;
@@ -103,8 +101,6 @@ public abstract partial class ChartAndMapBase : Panel
     public virtual void _TreeExited() { }
 
     public virtual void _Resized() { }
-    public virtual void _ItemRectChanged() { }
-    public virtual void _VisibilityChanged() { }
 
     public virtual void _MouseEntered() { }
     public virtual void _MouseExited() { }
