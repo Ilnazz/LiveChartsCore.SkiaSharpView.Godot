@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1698134973
-MainScene.cs::CSharpScript::-1::1698123964::0::1::::<><>::
-MainScene.tscn::PackedScene::4965637009903129023::1698131747::0::1::::<><>::res://MainScene.cs<>uid://birfd40yplybf
+::res://::1698415114
+MainScene.cs::CSharpScript::-1::1698140315::0::1::::<><>::
+MainScene.tscn::PackedScene::4965637009903129023::1698140294::0::1::::<><>::res://MainScene.cs<>uid://birfd40yplybf::::res://Images/livecharts.png
 VBoxViewBase.cs::CSharpScript::-1::1698123964::0::1::::<><>::
 ViewBase.cs::CSharpScript::-1::1698123964::0::1::::<><>::
 ::res://Axes/::1698123964
