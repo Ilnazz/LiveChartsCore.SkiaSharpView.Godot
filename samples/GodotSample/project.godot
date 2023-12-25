@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GodotSample"
 run/main_scene="res://MainScene.tscn"
-config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 
 [display]
 
