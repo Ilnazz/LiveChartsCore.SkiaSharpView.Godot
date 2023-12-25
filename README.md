@@ -1,4 +1,4 @@
-# LiveCharts2 for Godot game engine
+# LiveCharts2 charting library view for Godot game engine
 
 The view for cross-platform [LiveCharts 2](https://github.com/beto-rodriguez/LiveCharts2) C# library in Godot game engine.
 It uses [SkiaSharp.Views.Godot](https://github.com/Ilnazz/SkiaSharp.Views.Godot) library.
