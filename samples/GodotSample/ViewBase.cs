@@ -26,7 +26,7 @@ namespace GodotSample;
 
 public partial class ViewBase : Control
 {
-    public ViewBase()
+    protected ViewBase()
     {
         LayoutMode = 1;
         AnchorsPreset = (int)LayoutPreset.FullRect;

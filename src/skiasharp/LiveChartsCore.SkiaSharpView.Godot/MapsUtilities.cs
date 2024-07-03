@@ -20,49 +20,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Godot;
+using LiveChartsCore.Drawing;
+using LiveChartsCore.Geo;
 
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
 /// <summary>
-/// Allows you to defer the execution of actions
+/// Provides additional utility methods to work with maps.
 /// </summary>
-public partial class DeferringHelper : Node
+/// <seealso cref="Maps"/>
+public static class MapsUtilities
 {
-    private static DeferringHelper s_instance;
-    public static DeferringHelper Instance { get; } = s_instance ??= new();
+    private const string AssemblyNameContainingWorldMap =
+        $"{nameof(LiveChartsCore)}.{nameof(SkiaSharpView)}.{nameof(Godot)}";
 
-    private readonly IList<Action> _deferredActions = new List<Action>();
-    private readonly object _lockObject = new();
+    private const string WorldMapResourceName =
+        $"{AssemblyNameContainingWorldMap}.Resources.world.geojson";
 
-    private bool _isCallDeferred;
-
-    public void DeferActionInvocation(Action action)
+    /// <summary>
+    /// Gets the world map containing in <see cref="LiveChartsCore.SkiaSharpView.Godot"/> assembly.
+    /// </summary>
+    /// <returns>The map.</returns>
+    public static CoreMap<TDrawingContext> GetWorldMap<TDrawingContext>()
+        where TDrawingContext : DrawingContext
     {
-        lock (_lockObject)
-        {
-            _deferredActions.Add(action);
-
-            if (_isCallDeferred == false)
-            {
-                _ = CallDeferred("InvokeDeferredActions");
-                _isCallDeferred = true;
-            }
-        }
-    }
-
-    private void InvokeDeferredActions()
-    {
-        lock (_lockObject)
-        {
-            foreach (var action in _deferredActions)
-                action.Invoke();
-
-            _deferredActions.Clear();
-
-            _isCallDeferred = false;
-        }
+        var lvcCoreAssembly = Assembly.Load(AssemblyNameContainingWorldMap);
+        var worldMapResourceStream = lvcCoreAssembly.GetManifestResourceStream(WorldMapResourceName)!;
+        using var worldMapResourceStreamReader = new StreamReader(worldMapResourceStream);
+        return Maps.GetMapFromStreamReader<TDrawingContext>(worldMapResourceStreamReader);
     }
 }

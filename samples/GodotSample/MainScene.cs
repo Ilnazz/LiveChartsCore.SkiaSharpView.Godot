@@ -1,15 +1,22 @@
 using System;
+using System.Reflection;
 using Godot;
 using LiveChartsCore;
+using LiveChartsCore.Geo;
+using LiveChartsCore.SkiaSharpView.Godot;
 
 public partial class MainScene : Control
 {
+    [Export] public NodePath SampleListPath { get; set; } = null!;
+
+    [Export] public NodePath ViewContainerPath { get; set; } = null!;
+
 	public MainScene()
 	{
 		LiveCharts.Configure(config => // mark
 			 config // mark
-			// you can override the theme 
-			// .AddDarkTheme() // mark 
+			// you can override the theme
+			// .AddDarkTheme() // mark
 
 			// In case you need a non-Latin based font, you must register a typeface for SkiaSharp
 			//.HasGlobalSKTypeface(SKFontManager.Default.MatchCharacter('汉')) // <- Chinese // mark
@@ -33,34 +40,37 @@ public partial class MainScene : Control
 		); // mark
 	}
 
-	public record City(string Name, double Population);
-
-	[Export] public NodePath SampleListPath { get; set; } = null!;
-	[Export] public NodePath ViewContainerPath { get; set; } = null!;
-
 	public override void _Ready()
-	{
+    {
 		var sampleList = GetNode<ItemList>(SampleListPath);
 		var viewContainer = GetNode<Control>(ViewContainerPath);
 
 		var samples = ViewModelsSamples.Index.Samples;
-	
+
 		foreach (var sample in samples)
 			_ = sampleList.AddItem(sample);
 
-		Control? currentView = null;
-		sampleList.ItemSelected += sampleIndex =>
-		{
-			if (currentView is not null)
-			{
-				viewContainer.RemoveChild(currentView);
-				currentView.QueueFree();
-			}
+		Control currentView = null;
 
-			var sample = samples[(int)sampleIndex];
-			var sampleTypeName = $"GodotSample.{sample.Replace('/', '.')}.View";
-			currentView = (Control)Activator.CreateInstance(null, sampleTypeName).Unwrap();
-			viewContainer.AddChild(currentView);
-		};
-	}
+        ShowSample(0);
+
+        sampleList.ItemSelected += longSampleIndex => ShowSample((int)longSampleIndex);
+        return;
+
+        void ShowSample(int sampleIndex)
+        {
+            if (currentView is not null)
+            {
+                viewContainer.RemoveChild(currentView);
+                currentView.QueueFree();
+            }
+
+            var sample = samples[sampleIndex];
+            var sampleTypeName = $"GodotSample.{sample.Replace('/', '.')}.View";
+            currentView = (Control)Activator.CreateInstance(null, sampleTypeName)!.Unwrap();
+            viewContainer.AddChild(currentView);
+        }
+    }
+
+    public record City(string Name, double Population);
 }

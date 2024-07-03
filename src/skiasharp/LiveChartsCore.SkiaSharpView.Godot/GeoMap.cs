@@ -44,10 +44,10 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     /// <inheritdoc cref="IGeoMapView{TDrawingContext}.SyncContext" />
     public object SyncContext
     {
-        get => canvas.CoreCanvas.Sync;
+        get => base.canvas.CoreCanvas.Sync;
         set
         {
-            canvas.CoreCanvas.Sync = value;
+            base.canvas.CoreCanvas.Sync = value;
 
             _coreMap.Update();
         }
@@ -121,7 +121,7 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     }
 
     /// <inheritdoc cref="IGeoMapView{TDrawingContext}.Canvas"/>
-    public MotionCanvas<SkiaSharpDrawingContext> Canvas => canvas.CoreCanvas;
+    public MotionCanvas<SkiaSharpDrawingContext> Canvas => base.canvas.CoreCanvas;
 
     /// <inheritdoc cref="IGeoMapView{TDrawingContext}.AutoUpdateEnabled" />
     public bool AutoUpdateEnabled { get; set; } = true;
@@ -167,7 +167,7 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
     /// <summary>
     /// Initializes a new instance of the <see cref="GeoMap"/> class.
     /// </summary>
-    public GeoMap() : base()
+    public GeoMap()
     {
         _coreMap = new GeoMap<SkiaSharpDrawingContext>(this);
 
@@ -178,7 +178,7 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
             true
         );
 
-        _activeMap = Maps.GetWorldMap<SkiaSharpDrawingContext>();
+        _activeMap = MapsUtilities.GetWorldMap<SkiaSharpDrawingContext>();
 
         _stroke = new SolidColorPaint(new SKColor(255, 255, 255, 255)) { IsStroke = true };
         _fill = new SolidColorPaint(new SKColor(240, 240, 240, 255)) { IsFill = true };
@@ -250,6 +250,6 @@ public partial class GeoMap : ChartAndMapBase, IGeoMapView<SkiaSharpDrawingConte
 
     void IGeoMapView<SkiaSharpDrawingContext>.InvokeOnUIThread(Action action)
     {
-        DeferringHelper.Instance.DeferActionInvocation(action);
+        Callable.From(action).CallDeferred();
     }
 }

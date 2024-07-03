@@ -37,7 +37,7 @@ using System.Linq;
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
 /// <inheritdoc cref="ICartesianChartView{TDrawingContext}" />
-public partial class CartesianChart : Chart, ICartesianChartView<SkiaSharpDrawingContext>
+public partial class CartesianChart : ChartBase, ICartesianChartView<SkiaSharpDrawingContext>
 {
     #region Properties
     /// <inheritdoc cref="ICartesianChartView{TDrawingContext}.Series" />
@@ -157,7 +157,7 @@ public partial class CartesianChart : Chart, ICartesianChartView<SkiaSharpDrawin
     /// <summary>
     /// Initializes a new instance of the <see cref="CartesianChart"/> class.
     /// </summary>
-    public CartesianChart() : base()
+    public CartesianChart()
     {
         _seriesObserver = new CollectionDeepObserver<ISeries>
         (
@@ -297,7 +297,7 @@ public partial class CartesianChart : Chart, ICartesianChartView<SkiaSharpDrawin
         return new LvcPointD { X = xScaler.ToPixels(point.X), Y = yScaler.ToPixels(point.Y) };
     }
 
-    /// <inheritdoc cref="IChartView{TDrawingContext}.GetPointsAt(LvcPoint, TooltipFindingStrategy)"/>
+    /// <inheritdoc cref="IChartView{TDrawingContext}.GetPointsAt"/>
     public override IEnumerable<ChartPoint> GetPointsAt(LvcPoint point, TooltipFindingStrategy strategy = TooltipFindingStrategy.Automatic)
     {
         var cartesianChart = (CartesianChart<SkiaSharpDrawingContext>)coreChart;

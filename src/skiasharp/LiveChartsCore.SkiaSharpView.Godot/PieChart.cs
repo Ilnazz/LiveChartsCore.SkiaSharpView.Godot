@@ -35,7 +35,7 @@ using System.Linq;
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
 /// <inheritdoc cref="IPieChartView{TDrawingContext}" />
-public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
+public partial class PieChart : ChartBase, IPieChartView<SkiaSharpDrawingContext>
 {
     #region Properties
     /// <inheritdoc cref="IPieChartView{TDrawingContext}.IsClockwise" />
@@ -125,7 +125,7 @@ public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
     PieChart<SkiaSharpDrawingContext> IPieChartView<SkiaSharpDrawingContext>.Core => (PieChart<SkiaSharpDrawingContext>)coreChart;
 
     #region Fields
-    private readonly CollectionDeepObserver<ISeries> _seriesObserver = null!;
+    private readonly CollectionDeepObserver<ISeries> _seriesObserver;
     private IEnumerable<ISeries> _series = null!;
 
     private bool _isClockwise;
@@ -139,7 +139,7 @@ public partial class PieChart : Chart, IPieChartView<SkiaSharpDrawingContext>
     /// <summary>
     /// Initializes a new instance of the <see cref="PieChart"/> class.
     /// </summary>
-    public PieChart() : base()
+    public PieChart()
     {
         _seriesObserver = new CollectionDeepObserver<ISeries>
         (

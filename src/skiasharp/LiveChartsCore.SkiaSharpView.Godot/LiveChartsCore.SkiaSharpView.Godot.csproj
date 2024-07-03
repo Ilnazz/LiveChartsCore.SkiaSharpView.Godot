@@ -22,4 +22,9 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\world.geojson" />
+    <EmbeddedResource Include="Resources\world.geojson" />
+  </ItemGroup>
+
 </Project>

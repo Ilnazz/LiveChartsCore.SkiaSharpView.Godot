@@ -22,9 +22,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Godot;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.Motion;
@@ -70,7 +68,7 @@ public partial class MotionCanvas : SKControl
     /// <summary>
     /// Initializes a new instance of the <see cref="MotionCanvas"/> class.
     /// </summary>
-    public MotionCanvas() : base()
+    public MotionCanvas()
     {
         _paintTasks = new List<PaintSchedule<SkiaSharpDrawingContext>>();
 

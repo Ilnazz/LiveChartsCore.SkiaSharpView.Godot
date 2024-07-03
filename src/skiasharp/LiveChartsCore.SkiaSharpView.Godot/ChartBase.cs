@@ -39,7 +39,7 @@ using LiveChartsCore.VisualElements;
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
 /// <inheritdoc cref="IChartView{TDrawingContext}" />
-public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawingContext>
+public abstract partial class ChartBase : ChartAndMapBase, IChartView<SkiaSharpDrawingContext>
 {
     #region Properties
     /// <inheritdoc cref="IChartView.DrawMargin" />
@@ -318,24 +318,24 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
 
     #region Protected fields
     /// <summary>
-    /// The core chart
+    /// Gets the core chart.
     /// </summary>
-    protected Chart<SkiaSharpDrawingContext> coreChart = null!;
+    protected Chart<SkiaSharpDrawingContext> coreChart { get; set; } = null!;
 
     /// <summary>
-    /// The legend
+    /// Gets the legend.
     /// </summary>
-    protected IChartLegend<SkiaSharpDrawingContext>? legend;
+    protected IChartLegend<SkiaSharpDrawingContext>? legend { get; set; }
 
     /// <summary>
-    /// The tool tip
+    /// Gets the tool tip.
     /// </summary>
-    protected IChartTooltip<SkiaSharpDrawingContext>? tooltip;
+    protected IChartTooltip<SkiaSharpDrawingContext>? tooltip { get; set; }
     #endregion
 
     #region Private fields
     private IEnumerable<ChartElement<SkiaSharpDrawingContext>> _visualElements = null!;
-    private readonly CollectionDeepObserver<ChartElement<SkiaSharpDrawingContext>> _visualElementsObserver = null!;
+    private readonly CollectionDeepObserver<ChartElement<SkiaSharpDrawingContext>> _visualElementsObserver;
 
     private Margin? _drawMargin;
 
@@ -356,11 +356,11 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
 
     #region Setting up
     /// <summary>
-    /// Initializes a new instance of the <see cref="Chart"/> class.
+    /// Initializes a new instance of the <see cref="ChartBase"/> class.
     /// </summary>
-    protected Chart() : base()
+    protected ChartBase()
     {
-        InitializeCoreChart();
+        InitializeCoreChartCore();
 
         coreChart.Measuring += OnCoreMeasuring;
         coreChart.UpdateStarted += OnCoreUpdateStarted;
@@ -394,6 +394,15 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
     /// Initializes the core chart.
     /// </summary>
     protected abstract void InitializeCoreChart();
+
+    private void InitializeCoreChartCore()
+    {
+        InitializeCoreChart();
+
+        if (coreChart is null)
+            throw new InvalidOperationException(
+                $"The {nameof(coreChart)} property must be initialized in the {nameof(InitializeCoreChart)} method.");
+    }
     #endregion
 
     #region Event handlers
@@ -538,7 +547,7 @@ public abstract partial class Chart : ChartAndMapBase, IChartView<SkiaSharpDrawi
 
     void IChartView.InvokeOnUIThread(Action action)
     {
-        DeferringHelper.Instance.DeferActionInvocation(action);
+        Callable.From(action).CallDeferred();
     }
 
     void IChartView.Invalidate()

@@ -25,6 +25,9 @@ using Godot;
 
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
+/// <summary>
+/// Provides base implementation for charts and maps.
+/// </summary>
 public abstract partial class ChartAndMapBase : Panel
 {
     #region Properties
@@ -42,18 +45,36 @@ public abstract partial class ChartAndMapBase : Panel
     #endregion
 
     #region Events
-    public event Action<InputEventMouseButton>? MouseDown,
-                                                MouseDoubleClick,
-                                                MouseUp,
-                                                MouseWheel;
+    /// <summary>
+    /// Occurs when the mouse button is pressed.
+    /// </summary>
+    public event Action<InputEventMouseButton>? MouseDown;
 
+    /// <summary>
+    /// Occurs when the mouse button is pressed twice.
+    /// </summary>
+    public event Action<InputEventMouseButton>? MouseDoubleClick;
+
+    /// <summary>
+    /// Occurs when the mouse button is released.
+    /// </summary>
+    public event Action<InputEventMouseButton>? MouseUp;
+
+    /// <summary>
+    /// Occurs when the mouse wheel is moved.
+    /// </summary>
+    public event Action<InputEventMouseButton>? MouseWheel;
+
+    /// <summary>
+    /// Occurs when the mouse is moved.
+    /// </summary>
     public event Action<InputEventMouseMotion>? MouseMoved;
     #endregion
 
     /// <summary>
-    /// The canvas
+    /// Gets the canvas.
     /// </summary>
-    protected readonly MotionCanvas canvas;
+    protected MotionCanvas canvas { get; private set; }
 
     protected ChartAndMapBase()
     {
@@ -113,22 +134,27 @@ public abstract partial class ChartAndMapBase : Panel
 
     private void OnGuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion mouseMotionEvent)
-            MouseMoved?.Invoke(mouseMotionEvent);
-
-        else if (@event is InputEventMouseButton mouseButtonEvent)
+        switch (@event)
         {
-            if (mouseButtonEvent.ButtonIndex is MouseButton.WheelUp or MouseButton.WheelDown)
+            case InputEventMouseMotion mouseMotionEvent:
+                MouseMoved?.Invoke(mouseMotionEvent);
+                break;
+
+            case InputEventMouseButton { ButtonIndex: MouseButton.WheelUp or MouseButton.WheelDown } mouseButtonEvent:
                 MouseWheel?.Invoke(mouseButtonEvent);
+                break;
 
-            else if (mouseButtonEvent.DoubleClick)
-                MouseDoubleClick?.Invoke(mouseButtonEvent);
-
-            else if (mouseButtonEvent.Pressed)
+            case InputEventMouseButton { Pressed: true } mouseButtonEvent:
                 MouseDown?.Invoke(mouseButtonEvent);
+                break;
 
-            else
+            case InputEventMouseButton { DoubleClick: true } mouseButtonEvent:
+                MouseDoubleClick?.Invoke(mouseButtonEvent);
+                break;
+
+            case InputEventMouseButton mouseButtonEvent:
                 MouseUp?.Invoke(mouseButtonEvent);
+                break;
         }
     }
 }

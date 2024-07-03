@@ -34,7 +34,7 @@ using System.Linq;
 namespace LiveChartsCore.SkiaSharpView.Godot;
 
 /// <inheritdoc cref="IPolarChartView{TDrawingContext}" />
-public partial class PolarChart : Chart, IPolarChartView<SkiaSharpDrawingContext>
+public partial class PolarChart : ChartBase, IPolarChartView<SkiaSharpDrawingContext>
 {
     #region Properties
     /// <inheritdoc cref="IPolarChartView{TDrawingContext}.FitToBounds" />
@@ -152,7 +152,7 @@ public partial class PolarChart : Chart, IPolarChartView<SkiaSharpDrawingContext
     /// <summary>
     /// Initializes a new instance of the <see cref="PolarChart"/> class.
     /// </summary>
-    public PolarChart() : base()
+    public PolarChart()
     {
         _seriesObserver = new CollectionDeepObserver<ISeries>(OnDeepCollectionChanged, OnDeepCollectionPropertyChanged, true);
         _angleObserver = new CollectionDeepObserver<IPolarAxis>(OnDeepCollectionChanged, OnDeepCollectionPropertyChanged, true);
