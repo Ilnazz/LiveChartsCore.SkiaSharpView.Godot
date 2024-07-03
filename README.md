@@ -1,7 +1,7 @@
-# LiveCharts2 charting library view for Godot game engine
+# The LiveCharts2 .NET and C# data visualization library view for the Godot Game Engine
 
-The view for cross-platform [LiveCharts 2](https://github.com/beto-rodriguez/LiveCharts2) C# library in Godot game engine.
+The cross-platform [LiveCharts 2](https://github.com/beto-rodriguez/LiveCharts2) .NET and C# data visualization library view for the [Godot Game Engine](https://godotengine.org)
 
-For more details see plugin for Godot: https://github.com/Ilnazz/godot-live-charts
+To get more details see the plugin for the Godot: [godot-live-charts](https://github.com/Ilnazz/godot-live-charts).
 
-![](https://github.com/Ilnazz/LiveCharts2_Godot/blob/master/Example.gif)
+![Example gif](https://github.com/Ilnazz/LiveCharts2_Godot/blob/master/Example.gif)
